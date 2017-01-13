@@ -34,7 +34,7 @@ grammar Git::Log::Parser {
 
     token message { <indented-line>+ }
 
-    token indented-line { <.space> ** 4 \N+ $$ \n }
+    token indented-line { <.space> ** 4 \N* $$ \n }
 }
 
 class Git::Log::Actions {
