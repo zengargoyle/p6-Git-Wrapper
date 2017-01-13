@@ -4,9 +4,13 @@ use Test;
 #Add the local lib folder.
 use lib "{$*PROGRAM.dirname}/../lib";
 
-plan 1;
+my @modules = qw[Git::Wrapper Git::Log::Parser];
 
-#Attempt to load the module.
-use-ok 'Git::Wrapper', "Can load the module";
+plan @modules.elems;
+
+#Attempt to load the modules.
+for @modules -> $mod {
+    use-ok "$mod", "Can load module: $mod";
+}
 
 done-testing;
