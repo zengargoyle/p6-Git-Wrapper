@@ -13,7 +13,7 @@
     "Git::Log::Actions": "lib/Git/Log/Parser.pm"
   },
   "support" : {
-    "source" : "git://github.com/perlpilot/p6-Git-Wrapper.git"
+    "source" : "git://github.com/nicqrocks/p6-Git-Wrapper.git"
   },
-  "source-url": "git://github.com/perlpilot/p6-Git-Wrapper.git"
+  "source-url": "git://github.com/nicqrocks/p6-Git-Wrapper.git"
 }
