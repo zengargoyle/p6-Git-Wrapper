@@ -31,12 +31,17 @@ Date:   Fri Jan 13 09:30:38 2017 -0500
 ];
 
 
-plan 1;
+plan 2;
 
+#Try each test indivigually.
 subtest {
     for @commits -> $c {
         ok Git::Log::Parser.parse($c), "Can parse commit, index {$++}";
     }
 }
+
+#Join them together and try again.
+ok Git::Log::Parser.parse(@commits.join("\n")), "Can parse commit log";
+
 
 done-testing;
