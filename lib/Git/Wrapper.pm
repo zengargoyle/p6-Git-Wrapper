@@ -11,11 +11,11 @@ my sub find-git {
 class Git::Wrapper {
     has $.gitdir = !!! 'gitdir required';
     has $.git-executable = find-git;              # which git
-    
+
     method run($subcommand, *@positionals, *%named) {
         my $old-dir = $*CWD;
         chdir($.gitdir);
-        my $optstr = join " ", map -> $k,$v { $v eqv Bool::True ??  "-$k" !! "--$k='$v'" }, %named.kv;
+        my $optstr = join " ", map -> $k,$v { $v eqv Bool::True ??  "-$k" !! "--$k=$v" }, %named.kv;
         @positionals.unshift($optstr) if ?$optstr;
         my $p = run :out, :err, $.git-executable, $subcommand, |@positionals;
         my @out = $p.out.slurp-rest;
@@ -24,7 +24,7 @@ class Git::Wrapper {
     }
 
     method version() {
-        return self.run('version');
+        return self.run('version').Str.chomp;
     }
 
     method log(*@p, *%n) {
@@ -35,14 +35,13 @@ class Git::Wrapper {
     }
 
     method clone(*@p, *%n) {
-        return self.run('clone', |@p, |%n); 
+        return self.run('clone', |@p, |%n);
     }
 
     for <init branch checkout add pull rebase reset push fetch commit show status diff grep merge mv rm tag> -> $method {
         Git::Wrapper.HOW.add_method(Git::Wrapper, $method, anon method (*@p, *%n) {
-            return self.run($method, |@p, |%n); 
+            return self.run($method, |@p, |%n);
         });
     }
 
 }
-

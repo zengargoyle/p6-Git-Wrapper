@@ -43,5 +43,4 @@ subtest {
 #Join them together and try again.
 ok Git::Log::Parser.parse(@commits.join("\n")), "Can parse commit log";
 
-
 done-testing;
