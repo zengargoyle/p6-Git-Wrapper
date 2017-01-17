@@ -13,6 +13,9 @@ my $git = Git::Wrapper.new: gitdir => "{$*PROGRAM.dirname}/..";
 plan 1;
 
 #Check the version.
-isa-ok $git.version, "Str", "Can get the version.";
+subtest {
+    isa-ok $git.version, "Str", "Can get the version.";
+    ok $git.version ~~ / 'git version ' /, "The output looks right.";
+}
 
 done-testing;
