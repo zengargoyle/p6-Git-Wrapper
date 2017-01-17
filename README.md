@@ -1,11 +1,11 @@
 Git::Wrapper
 ============
 
-Hacky way to use git from Perl 6 "inspired" by Perl 5's version of the module of the same name.
+Hacky way to use git from Perl 6 "inspired" by Perl 5's version of the module of the same name. Originally made by [PerlPilot](https://github.com/perlpilot).
 
 ## SYNOPSIS
 
-    my $git = Git::Wrapper.new( 
+    my $git = Git::Wrapper.new(
         git-executable     => '/path/to/git',   # optional
         gitdir             => '/foo/bar',
     );
