@@ -1,8 +1,8 @@
 {
-  "perl" : "v6",
+  "perl" : "6.c",
   "name" : "Git::Wrapper",
   "description" : "simple, hacky way to use git from Perl 6",
-  "version" : "v0.0.1",
+  "version" : "v0.0.2",
   "build-depends" : [ ],
   "test-depends" : [ ],
   "depends" : [ ],
