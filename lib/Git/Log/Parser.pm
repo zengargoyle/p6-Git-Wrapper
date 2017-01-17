@@ -11,8 +11,8 @@ class Git::Wrapper::Log {
 
     method gist() {
         my @out = gather {
-            for <sha1 author date summary> {
-                @out.push: "$_: {self."$_"().gist}";
+            for <sha1 author date summary> -> $m {
+                take "$m: " ~ self."$m"().gist;
             }
         }
         return @out.join: "\n";
