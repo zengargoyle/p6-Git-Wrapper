@@ -8,6 +8,15 @@ class Git::Wrapper::Log {
     method summary() {
         return self.message.split("\n").[0];
     }
+
+    method gist() {
+        my @out = gather {
+            for <sha1 author date summary> {
+                @out.push: "$_: {self."$_"().gist}";
+            }
+        }
+        return @out.join: "\n";
+    }
 }
 
 grammar Git::Log::Parser {
