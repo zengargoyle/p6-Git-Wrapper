@@ -10,10 +10,12 @@ use Git::Wrapper;
 #Make a connection to the local git repo.
 my $git = Git::Wrapper.new: gitdir => "{$*PROGRAM.dirname}/..";
 
-plan 3;
+plan 1;
 
-isa-ok $git.log, "List", "Can parse the git log.";
-isa-ok $git.version, "Str", "Can get the version.";
-isa-ok $git.gist, "Str", "The gist works.";
+#Check the version.
+subtest {
+    isa-ok $git.version, "Str", "Can get the version.";
+    ok $git.version ~~ / 'git version ' /, "The output looks right.";
+}
 
 done-testing;
