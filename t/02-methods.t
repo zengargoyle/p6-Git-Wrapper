@@ -12,8 +12,21 @@ my $git = Git::Wrapper.new: gitdir => "{$*PROGRAM.dirname}/..";
 
 plan 3;
 
-isa-ok $git.log, "List", "Can parse the git log.";
+#Check the log method.
+subtest {
+    isa-ok $git.log, "List", "Can parse the git log.";
+    isa-ok $git.log[0], "Git::Wrapper::Log",
+        "Objects in log list are the right type.";
+}
+
+#Check the version.
 isa-ok $git.version, "Str", "Can get the version.";
-isa-ok $git.gist, "Str", "The gist works.";
+
+#Check the gist method.
+subtest {
+    my $gist = $git.log[0].gist;
+    isa-ok $gist, "Str", "The gist gives a string.";
+    ok $gist ~~ / [\w+ ':' \s+ \w+ % \s+]+ % \n /, "Gist looks ok";
+}
 
 done-testing;
