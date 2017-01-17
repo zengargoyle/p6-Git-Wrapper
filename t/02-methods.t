@@ -10,23 +10,9 @@ use Git::Wrapper;
 #Make a connection to the local git repo.
 my $git = Git::Wrapper.new: gitdir => "{$*PROGRAM.dirname}/..";
 
-plan 3;
-
-#Check the log method.
-subtest {
-    isa-ok $git.log, "List", "Can parse the git log.";
-    isa-ok $git.log[0], "Git::Wrapper::Log",
-        "Objects in log list are the right type.";
-}
+plan 1;
 
 #Check the version.
 isa-ok $git.version, "Str", "Can get the version.";
-
-#Check the gist method.
-subtest {
-    my $gist = $git.log[0].gist;
-    isa-ok $gist, "Str", "The gist gives a string.";
-    ok $gist ~~ / [\w+ ':' \s+ \w+ % \s+]+ % \n /, "Gist looks ok";
-}
 
 done-testing;
