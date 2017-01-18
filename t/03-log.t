@@ -11,14 +11,11 @@ use Git::Wrapper;
 my $git = Git::Wrapper.new: gitdir => "{$*PROGRAM.dirname}/..";
 
 
-plan 2;
+plan 3;
 
 #Check the log method.
-subtest {
-    isa-ok $git.log, "List", "Can parse the git log.";
-    ok $git.log.all ~~ Git::Wrapper::Log,
-        "Objects in log list are the right type.";
-}
+isa-ok $git.log, "List", "Can parse the git log.";
+ok $git.log.all ~~ Git::Wrapper::Log, "Objects in log list are the right type.";
 
 
 #Check the gist method of the Git::Wrapper::Log object.
