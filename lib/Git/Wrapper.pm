@@ -24,7 +24,7 @@ class Git::Wrapper {
     }
 
     method is-repo() {
-        (self.run('status').join.chomp ~~ / 'Not a git repo' /)
+        (self.run('status').join.chomp eq "")
             ?? False
             !! True
     }
