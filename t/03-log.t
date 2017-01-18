@@ -13,6 +13,8 @@ my $git = Git::Wrapper.new: gitdir => "{$*PROGRAM.dirname}/..";
 
 plan 3;
 
+skip-rest "Not in a git repo" unless $git.is-repo;
+
 #Check the log method.
 isa-ok $git.log, "List", "Can parse the git log.";
 ok $git.log.all ~~ Git::Wrapper::Log, "Objects in log list are the right type.";

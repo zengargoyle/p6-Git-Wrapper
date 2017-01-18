@@ -10,7 +10,10 @@ use Git::Wrapper;
 #Make a connection to the local git repo.
 my $git = Git::Wrapper.new: gitdir => "{$*PROGRAM.dirname}/..";
 
-plan 1;
+plan 2;
+
+#Test if Git::Wrapper can detect if this is a git repo.
+isa-ok $git.is-repo, "Bool", "Can check if the dir is already a repo.";
 
 #Check the version.
 subtest {

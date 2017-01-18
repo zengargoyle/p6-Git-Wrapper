@@ -23,6 +23,12 @@ class Git::Wrapper {
         return @out;
     }
 
+    method is-repo() {
+        (self.run('status').join.chomp ~~ / 'Not a git repo' /)
+            ?? False
+            !! True
+    }
+
     method version() {
         return self.run('version').Str.chomp;
     }
