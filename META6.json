@@ -13,6 +13,7 @@
     "Git::Log::Parser" : "lib/Git/Log/Parser.pm",
     "Git::Log::Actions": "lib/Git/Log/Parser.pm"
   },
+  "tags" : [ "git", "wrapper" ],
   "support" : {
     "source" : "git://github.com/nicqrocks/p6-Git-Wrapper.git"
   },
